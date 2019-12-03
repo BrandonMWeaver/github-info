@@ -23,10 +23,9 @@ class GithubInfo::Scraper
   end
   
   def get_repositories
-    repositories = []
     document = Nokogiri::HTML(open("https://github.com/#{@github_name}?tab=repositories"))
-    document.css("div.d-inline-block.mb-1 h3 a").each { |repository|
-      repositories << repository.text.split(' ')[0]
+    repositories = document.css("div.d-inline-block.mb-1 h3 a").collect { |repository|
+      repository.text.split(' ')[0]
     }
     return repositories
   end
