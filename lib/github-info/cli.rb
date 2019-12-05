@@ -6,6 +6,7 @@ class GithubInfo::CLI
   private
   
   def menu
+    commands = ["name", "contributions", "repos"]
     github_name = ""
     
     loop do
@@ -26,13 +27,16 @@ class GithubInfo::CLI
       
       elsif input.downcase == "contributions" && @github
         @github.print_contributions
-        
+      
       elsif input.downcase == "repos" && @github
         @github.print_repos
       
       elsif input.downcase == "exit"
         break
         
+      elsif commands.include?(input.downcase)
+        puts "command currently unavailable"
+      
       else
         puts "unknown command"
       end

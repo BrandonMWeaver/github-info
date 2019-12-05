@@ -19,12 +19,16 @@ class GithubInfo::Github
   end
   
   def print_repos
-    i = 0
-    puts "repositories:"
-    @repositories.each { |repository|
-      print "\t"
-      print '0' if i < 9
-      puts "#{i += 1}. #{repository}"
-    }
+    if @repositories.size != 0
+      i = 0
+      puts "repositories:"
+      @repositories.each { |repository|
+        print "\t"
+        print '0' if i < 9
+        puts "#{i += 1}. #{repository[:name]}"
+      }
+    else
+      puts "no repositories"
+    end
   end
 end
