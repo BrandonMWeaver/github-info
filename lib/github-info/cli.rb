@@ -6,7 +6,7 @@ class GithubInfo::CLI
   private
   
   def menu
-    commands = ["name", "contributions", "repos"]
+    commands = ["name", "contributions", "repos", "history"]
     github_name = ""
     
     loop do
@@ -20,6 +20,8 @@ class GithubInfo::CLI
         puts "github acquired"
         rescue OpenURI::HTTPError
           puts "github not found"
+        rescue NoMethodError
+          puts "github not provided"
         end
       
       elsif input.downcase == "name" && @github
@@ -35,6 +37,8 @@ class GithubInfo::CLI
         begin
         index = input.split(':')[1].split(' ')[0].to_i - 1
         @github.print_commit_history(index)
+        rescue OpenURI::HTTPError
+          puts "repository not found"
         rescue NoMethodError
           puts "repository not found"
         end
@@ -42,7 +46,7 @@ class GithubInfo::CLI
       elsif input.downcase == "exit"
         break
         
-      elsif commands.include?(input.downcase)
+      elsif commands.include?(input.split(':')[0].downcase)
         puts "command currently unavailable"
       
       else
