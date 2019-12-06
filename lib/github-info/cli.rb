@@ -32,8 +32,12 @@ class GithubInfo::CLI
         @github.print_repos
       
       elsif input.split(':')[0].downcase == "history" && @github
+        begin
         index = input.split(':')[1].split(' ')[0].to_i - 1
         @github.print_commit_history(index)
+        rescue NoMethodError
+          puts "repository not found"
+        end
       
       elsif input.downcase == "exit"
         break

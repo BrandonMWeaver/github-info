@@ -37,9 +37,19 @@ class GithubInfo::Github
     
     puts "commit history:"
     commit_history.each { |commit|
-      print "  "
-      print "#{commit[:date]}: "
+      print "\t"
+      print "#{format_date(commit[:date])}: "
       puts commit[:description]
     }
+  end
+  
+  private
+  
+  def format_date(date)
+    if date.split(' ')[1].split(',')[0].to_i < 10
+      date_pieces = date.split(' ')
+      date = "#{date_pieces[0]} 0#{date_pieces[1]} #{date_pieces[2]}"
+    end
+    return date
   end
 end
