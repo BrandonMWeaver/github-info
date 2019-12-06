@@ -1,8 +1,6 @@
 # Github::Info
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/github/info`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem provides commands which are used to retrieve and output information from a github profile.
 
 ## Installation
 
@@ -22,7 +20,26 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+This CLI gem provides the following commands:
+  help
+  git: [profile]
+    name
+    contributions
+    repos
+    history: [repository_index]
+
+A [profile] is the username of a github profile.
+      e.g. BrandonMWeaver
+
+A [repository_index] is identified by the number to the left-hand side of a repository as listed by the output of repos.
+      e.g. 1
+
+help -> Provides a list of available commands and their usage.
+git: [profile] -> Retrieves information from a github profile.
+  name -> Outputs the name of the user if one is provided.
+  contributions -> Outputs the contributions commited by the user within the last year.
+  repos -> Outputs an indexed list of the user's repositories.
+  history: [repository_index] -> Outputs a list of a repository's commit history
 
 ## Development
 

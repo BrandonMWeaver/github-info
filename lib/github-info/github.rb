@@ -6,6 +6,19 @@ class GithubInfo::Github
     @repositories = scraper.github_info[:repositories]
   end
   
+  def self.print_help
+    puts "\tgit: [profile]"
+    puts "\t  Retrieves information from a github profile.\n\n"
+    puts "\tname"
+    puts "\t  Outputs the name of the user if one is provided.\n\n"
+    puts "\tcontributions"
+    puts "\t  Outputs the contributions commited by the user within the last year.\n\n"
+    puts "\trepos"
+    puts "\t  Outputs an indexed list of the user's repositories.\n\n"
+    puts "\thistory: [repository_index]"
+    puts "\t  Outputs a list of a repository's commit history.\n\n"
+  end
+  
   def print_name
     if @name != ""
       puts @name

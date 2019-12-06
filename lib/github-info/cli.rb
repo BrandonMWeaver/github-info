@@ -24,6 +24,9 @@ class GithubInfo::CLI
           puts "github not provided"
         end
       
+      elsif input.downcase == "help"
+        GithubInfo::Github.print_help
+      
       elsif input.downcase == "name" && @github
         @github.print_name
       
