@@ -31,4 +31,15 @@ class GithubInfo::Github
       puts "no repositories"
     end
   end
+  
+  def print_commit_history(index)
+    commit_history = GithubInfo::Scraper.get_commit_history(@repositories[index][:href])
+    
+    puts "commit history:"
+    commit_history.each { |commit|
+      print "  "
+      print "#{commit[:date]}: "
+      puts commit[:description]
+    }
+  end
 end

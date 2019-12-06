@@ -31,6 +31,10 @@ class GithubInfo::CLI
       elsif input.downcase == "repos" && @github
         @github.print_repos
       
+      elsif input.split(':')[0].downcase == "history" && @github
+        index = input.split(':')[1].split(' ')[0].to_i - 1
+        @github.print_commit_history(index)
+      
       elsif input.downcase == "exit"
         break
         

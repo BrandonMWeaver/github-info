@@ -12,6 +12,21 @@ class GithubInfo::Scraper
     }
   end
   
+  def self.get_commit_history(relative_path)
+    commit_history = []
+    document = Nokogiri::HTML(open("https://github.com#{relative_path}/commits"))
+    document.css("div.table-list-cell").each { |commit|
+      if commit.css("p a.message.js-navigation-open").text != ""
+        commit_hash = {
+          description: commit.css("p a.message.js-navigation-open").text,
+          date: commit.css("relative-time.no-wrap").text
+        }
+        commit_history << commit_hash
+      end
+    }
+    return commit_history
+  end
+  
   private
   
   def get_user_info
