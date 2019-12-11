@@ -1,3 +1,5 @@
+require "nokogiri"
+require "open-uri"
 require_relative "github-info/version"
 require_relative "github-info/cli"
 require_relative "github-info/github"
