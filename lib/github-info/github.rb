@@ -13,7 +13,7 @@ class GithubInfo::Github
     @@all << self
   end
   
-  def self.find_or_create_by_profile_name(user_name)
+  def self.find_or_create_by_user_name(user_name)
     @@all.each do |profile|
       if user_name == profile.user_name
         return profile

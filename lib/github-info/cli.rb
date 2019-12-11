@@ -75,7 +75,7 @@ class GithubInfo::CLI
       if input.split(':')[0].downcase == "git"
         begin
         profile_name = input.split(':')[1].split(' ')[0]
-        @github_profile = GithubInfo::Github.find_or_create_by_profile_name(profile_name)
+        @github_profile = GithubInfo::Github.find_or_create_by_user_name(profile_name)
         puts "github acquired"
         rescue OpenURI::HTTPError
           puts "github not found"
@@ -98,7 +98,7 @@ class GithubInfo::CLI
       elsif input.split(':')[0].downcase == "history" && @github_profile
         begin
         index = input.split(':')[1].split(' ')[0].to_i - 1
-        @github.print_commit_history(index)
+        print_commit_history(index)
         rescue OpenURI::HTTPError
           puts "repository not found"
         rescue NoMethodError
