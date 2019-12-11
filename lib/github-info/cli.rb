@@ -39,7 +39,7 @@ class GithubInfo::CLI
       @github_profile.repositories.each do |repository|
         print "\t"
         print '0' if i < 9
-        puts "#{i += 1}. #{repository[:name]}"
+        puts "#{i += 1}. #{repository.name}"
       end
     else
       puts "no repositories"
@@ -79,8 +79,8 @@ class GithubInfo::CLI
         puts "github acquired"
         rescue OpenURI::HTTPError
           puts "github not found"
-        rescue NoMethodError
-          puts "github not provided"
+        rescue NoMethodError => msg
+          puts msg #"github not provided"
         end
       
       elsif input.downcase == "help"

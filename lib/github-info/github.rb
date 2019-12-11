@@ -9,7 +9,12 @@ class GithubInfo::Github
     github_info = GithubInfo::Scraper.scrape(@user_name)
     @name = github_info[:user_info][:name]
     @contributions = github_info[:user_info][:contributions]
-    @repositories = github_info[:repositories]
+    
+    @repositories = []
+    github_info[:repositories].each do |repository|
+      @repositories << GithubInfo::Repository.new(repository[:name], repository[:href])
+    end
+    
     @@all << self
   end
   
@@ -27,7 +32,9 @@ class GithubInfo::Github
   end
   
   def commit_history(index)
-    return GithubInfo::Scraper.get_commit_history(@repositories[index][:href])
+    repository = @repositories[index]
+    repository.commit_history = GithubInfo::Scraper.get_commit_history(repository.href) unless repository.commit_history != nil
+    return repository.commit_history
   end
   
 end

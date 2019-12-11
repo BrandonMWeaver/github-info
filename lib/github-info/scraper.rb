@@ -8,7 +8,7 @@ class GithubInfo::Scraper
     return @github_info
   end
   
-  def self.get_commit_history(relative_path)
+  def self.get_commit_history(href)
     commit_history = []
     document = Nokogiri::HTML(open("https://github.com#{relative_path}/commits/master"))
     document.css("div.table-list-cell").each { |commit|
