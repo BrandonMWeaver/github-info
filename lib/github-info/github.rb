@@ -32,9 +32,7 @@ class GithubInfo::Github
   end
   
   def commit_history(index)
-    repository = @repositories[index]
-    repository.commit_history = GithubInfo::Scraper.get_commit_history(repository.href) unless repository.commit_history != nil
-    return repository.commit_history
+    return GithubInfo::Repository.find_or_create_commit_history_by_href(@repositories[index].href)
   end
   
 end

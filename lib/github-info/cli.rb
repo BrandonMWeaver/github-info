@@ -48,11 +48,11 @@ class GithubInfo::CLI
   
   def print_commit_history(index)
     puts "commit history:"
-    @github_profile.commit_history(index).each { |commit|
+    @github_profile.commit_history(index).each do |commit|
       print "\t"
       print "#{format_date(commit[:date])}: "
       puts commit[:description]
-    }
+    end
   end
   
   def format_date(date)
@@ -79,8 +79,8 @@ class GithubInfo::CLI
         puts "github acquired"
         rescue OpenURI::HTTPError
           puts "github not found"
-        rescue NoMethodError => msg
-          puts msg #"github not provided"
+        rescue NoMethodError
+          puts "github not provided"
         end
       
       elsif input.downcase == "help"
@@ -116,4 +116,5 @@ class GithubInfo::CLI
       end
     end
   end
+  
 end
