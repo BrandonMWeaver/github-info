@@ -1,11 +1,11 @@
 class GithubInfo::Scraper
   
   def self.scrape(profile_name)
-    @github_info = {
+    github_info = {
       user_info: get_user_info(profile_name),
       repositories: get_repositories(profile_name)
     }
-    return @github_info
+    return github_info
   end
   
   def self.get_commit_history(href)
