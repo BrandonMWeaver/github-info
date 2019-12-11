@@ -22,6 +22,7 @@ Or install it yourself as:
 
 This CLI gem provides the following commands:
   help
+  exit
   git: [profile]
     name
     contributions
@@ -35,6 +36,7 @@ A [repository_index] is identified by the number to the left-hand side of a repo
       e.g. 1
 
 help -> Provides a list of available commands and their usage.
+exit -> Exit the program.
 git: [profile] -> Retrieves information from a github profile.
   name -> Outputs the name of the user if one is provided.
   contributions -> Outputs the contributions commited by the user within the last year.
