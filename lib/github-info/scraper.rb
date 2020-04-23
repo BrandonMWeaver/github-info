@@ -11,7 +11,7 @@ class GithubInfo::Scraper
   def self.get_commit_history(href)
     commit_history = []
     document = Nokogiri::HTML(open("https://github.com#{href}/commits/master"))
-    document.css("div.table-list-cell").each do |commit|
+    document.css("div.flex-auto.min-width-0").each do |commit|
       if commit.css("p a.message.js-navigation-open").text != ""
         commit_hash = {
           description: commit.css("p a.message.js-navigation-open").text,
@@ -46,4 +46,13 @@ class GithubInfo::Scraper
     return repositories
   end
   
+  def self.get_directory_list(href)
+    directory_list = []
+    document = Nokogiri::HTML(open("https://github.com#{href}"))
+    document.css("td.content span a").map do |directory|
+      directory_list.push(directory["href"].include?("/tree/") ? "folder: #{directory["href"].split("/master/")[1]}" : "file:\s\s #{directory["href"].split("/master/")[1]}")
+    end
+    return directory_list
+  end
+
 end

@@ -41,7 +41,8 @@ git: [profile] -> Retrieves information from a github profile.
   name -> Outputs the name of the user if one is provided.
   contributions -> Outputs the contributions commited by the user within the last year.
   repos -> Outputs an indexed list of the user's repositories.
-  history: [repository_index] -> Outputs a list of a repository's commit history
+  history: [repository_index] -> Outputs a list of a repository's commit history.
+  directory: [repository_index] -> Outputs a list of a repository's primary directory.
 
 ## Development
 

@@ -16,6 +16,8 @@ class GithubInfo::CLI
     puts "Outputs an indexed list of the user's repositories."
     print "\thistory: [repository_index] -> "
     puts "Outputs a list of a repository's commit history."
+    print "\tdirectory: [repository_index] -> "
+    puts "Outputs a list of a repository's primary directory."
     print "\texit -> "
     puts "Exit the program."
   end
@@ -55,6 +57,13 @@ class GithubInfo::CLI
     end
   end
   
+  def print_directory_list(index)
+    puts "directory list:"
+    @github_profile.directory_list(index).each do |directory|
+      puts "\t#{directory}"
+    end
+  end
+
   def format_date(date)
     if date.split(' ')[1].split(',')[0].to_i < 10
       date_pieces = date.split(' ')
@@ -105,6 +114,16 @@ class GithubInfo::CLI
           puts "repository not found"
         end
       
+        elsif input.split(':')[0].downcase == "directory" && @github_profile
+          begin
+          index = input.split(':')[1].split(' ')[0].to_i - 1
+          print_directory_list(index)
+          rescue OpenURI::HTTPError
+            puts "repository not found"
+          rescue NoMethodError => msg
+            puts "repository not found"
+          end
+
       elsif input.downcase == "exit"
         break
         

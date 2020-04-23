@@ -35,4 +35,8 @@ class GithubInfo::Github
     return GithubInfo::Repository.find_or_create_commit_history_by_href(@repositories[index].href)
   end
   
+  def directory_list(index)
+    return GithubInfo::Repository.find_or_create_directory_list_by_href(@repositories[index].href)
+  end
+
 end
